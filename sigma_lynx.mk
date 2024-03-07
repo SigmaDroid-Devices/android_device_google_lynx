@@ -16,7 +16,7 @@ $(call inherit-product, device/google/lynx/device-lineage.mk)
 # Device identifier. This must come after all inclusions
 PRODUCT_BRAND := google
 PRODUCT_MODEL := Pixel 7a
-PRODUCT_NAME := sigma_cheetah
+PRODUCT_NAME := sigma_lynx
 
 CUSTOM_APPS := true
 
