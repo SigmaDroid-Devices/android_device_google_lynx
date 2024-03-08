@@ -18,8 +18,6 @@ PRODUCT_BRAND := google
 PRODUCT_MODEL := Pixel 7a
 PRODUCT_NAME := sigma_lynx
 
-CUSTOM_APPS := true
-
 # Boot animation
 TARGET_SCREEN_HEIGHT := 2400
 TARGET_SCREEN_WIDTH := 1080
