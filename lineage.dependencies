@@ -7,6 +7,6 @@
     "repository": "device/google/lynx-kernel",
     "target_path": "device/google/lynx-kernel",
     "remote": "aosp-lynx",
-    "branch": "refs/tags/android-14.0.0_r22"
+    "branch": "refs/heads/main"
   }
 ]
