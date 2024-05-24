@@ -4,6 +4,11 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
+# Scudo
+PRODUCT_USE_SCUDO := true
+
+DISABLE_ARTIFACT_PATH_REQUIREMENTS := true
+
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay-lineage
 
@@ -28,7 +33,33 @@ TARGET_PREBUILT_KERNEL := device/google/lynx-kernel/Image.lz4
 # wireless_charger HAL service
 include device/google/gs-common/wireless_charger/wireless_charger.mk
 
+# Face Unlock
+include vendor/google/faceunlock/device.mk
+
+# PixelParts
+include packages/apps/PixelParts/device.mk
+
+# PowerShare
+include hardware/google/pixel/powershare/device.mk
+
 # Build necessary packages for vendor
+
+SIGMA_BUILD_TYPE := OFFICIAL
+SIGMA_MAINTAINER := EliteDarkKaiser
+TARGET_INCLUDE_MATLOG := true
+TARGET_EXCLUDES_AUDIOFX := false
+TARGET_DEFAULT_ADB_ENABLED = true
+TARGET_HAS_UDFPS := true
+TARGET_ENABLE_BLUR := true
+
+WITH_GMS := true
+WITH_GAPPS := true
+BUILD_GMS_OVERLAYS_AND_PROPS := true
+TARGET_INCLUDE_PIXEL_LAUNCHER := true
+TARGET_SUPPORTS_QUICK_TAP := true
+TARGET_SUPPORTS_CALL_RECORDING := true
+TARGET_IS_PIXEL := true
+TARGET_SUPPORTS_CLEAR_CALLING := true
 
 # Audio
 PRODUCT_PACKAGES += \
