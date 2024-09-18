@@ -16,7 +16,7 @@ $(call inherit-product, device/google/lynx/device-lineage.mk)
 # Device identifier. This must come after all inclusions
 PRODUCT_BRAND := google
 PRODUCT_MODEL := Pixel 7a
-PRODUCT_NAME := sigma_lynx
+PRODUCT_NAME := signa_lynx
 
 # Boot animation
 TARGET_SCREEN_HEIGHT := 2400
@@ -24,8 +24,8 @@ TARGET_SCREEN_WIDTH := 1080
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
     TARGET_PRODUCT=lynx \
-    PRIVATE_BUILD_DESC="lynx-user 14 AP1A.240505.005 11677807 release-keys"
+    PRIVATE_BUILD_DESC="lynx-user 14 AP2A.240905.003 12231197 release-keys"
 
-BUILD_FINGERPRINT := google/lynx/lynx:14/AP1A.240505.005/11677807:user/release-keys
+BUILD_FINGERPRINT := google/lynx/lynx:14/AP2A.240905.003/12231197:user/release-keys
 
 $(call inherit-product, vendor/google/lynx/lynx-vendor.mk)

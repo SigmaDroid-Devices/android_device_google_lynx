@@ -17,6 +17,15 @@
 TARGET_KERNEL_DIR ?= device/google/lynx-kernel
 TARGET_BOARD_KERNEL_HEADERS := device/google/lynx-kernel/kernel-headers
 
+ifdef RELEASE_GOOGLE_LYNX_KERNEL_VERSION
+TARGET_LINUX_KERNEL_VERSION := $(RELEASE_GOOGLE_LYNX_KERNEL_VERSION)
+endif
+
+ifdef RELEASE_GOOGLE_LYNX_KERNEL_DIR
+TARGET_KERNEL_DIR := $(RELEASE_GOOGLE_LYNX_KERNEL_DIR)
+TARGET_BOARD_KERNEL_HEADERS := $(RELEASE_GOOGLE_LYNX_KERNEL_DIR)/kernel-headers
+endif
+
 $(call inherit-product-if-exists, vendor/google_devices/lynx/prebuilts/device-vendor-lynx.mk)
 $(call inherit-product-if-exists, vendor/google_devices/gs201/prebuilts/device-vendor.mk)
 $(call inherit-product-if-exists, vendor/google_devices/gs201/proprietary/device-vendor.mk)
@@ -150,7 +159,7 @@ include device/google/lynx/bluetooth/qti_default.mk
 GOODIX_CONFIG_BUILD_VERSION := g7_trusty
 ifneq (,$(filter AP1%,$(RELEASE_PLATFORM_VERSION)))
 PRODUCT_SOONG_NAMESPACES += vendor/google_devices/lynx/prebuilts/firmware/fingerprint/24Q1
-else ifneq (,$(filter AP2%,$(RELEASE_PLATFORM_VERSION)))
+else ifneq (,$(filter AP2% AP3%,$(RELEASE_PLATFORM_VERSION)))
 PRODUCT_SOONG_NAMESPACES += vendor/google_devices/lynx/prebuilts/firmware/fingerprint/24Q2
 else
 PRODUCT_SOONG_NAMESPACES += vendor/google_devices/lynx/prebuilts/firmware/fingerprint/trunk
@@ -178,7 +187,7 @@ PRODUCT_VENDOR_PROPERTIES += \
 PRODUCT_SOONG_NAMESPACES += vendor/google_devices/lynx/prebuilts
 ifneq (,$(filter AP1%,$(RELEASE_PLATFORM_VERSION)))
 PRODUCT_SOONG_NAMESPACES += vendor/google_devices/lynx/prebuilts/trusty/24Q1
-else ifneq (,$(filter AP2%,$(RELEASE_PLATFORM_VERSION)))
+else ifneq (,$(filter AP2% AP3%,$(RELEASE_PLATFORM_VERSION)))
 PRODUCT_SOONG_NAMESPACES += vendor/google_devices/lynx/prebuilts/trusty/24Q2
 else
 PRODUCT_SOONG_NAMESPACES += vendor/google_devices/lynx/prebuilts/trusty/trunk
@@ -222,8 +231,15 @@ PRODUCT_VENDOR_PROPERTIES += \
 	vendor.zram.size=3g
 
 # Increment the SVN for any official public releases
+ifdef RELEASE_SVN_LYNX
+TARGET_SVN ?= $(RELEASE_SVN_LYNX)
+else
+# Set this for older releases that don't use build flag
+TARGET_SVN ?= 46
+endif
+
 PRODUCT_VENDOR_PROPERTIES += \
-    ro.vendor.build.svn=39
+    ro.vendor.build.svn=$(TARGET_SVN)
 
 # Set support hide display cutout feature
 PRODUCT_PRODUCT_PROPERTIES += \
